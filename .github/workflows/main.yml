@@ -8,16 +8,9 @@ on:
       - uat
       - qa
 
-jobs:  
-  call-cicd-workflow: # Job to call cicd-template
-    runs-on: ubuntu-latest # The job will run on the latest version of Ubuntu
-    
-    steps: 
-      - name: Checkout repository # Step to check out the repository
-        uses: actions/checkout@v4 
-        
-      - name: Call cicd template
-        uses: uservaj/mc-cicd-org-template/.github/workflows/main.yml@main
-        with:
-          environment: ${{ github.ref_name }}
-
+jobs:  # Job to call cicd-template
+  call-cicd-workflow: # call cicd main flow 
+    uses: uservaj/mc-cicd-org-template/.github/workflows/main.yml@main
+    with:
+      environment: ${{ github.ref_name }}
+    secrets: inherit
